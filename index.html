@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portofolio — [Priska]</title>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --pink:   #FF3CAC;
+      --cyan:   #00F5FF;
+      --yellow: #FFE600;
+      --purple: #7B2FBE;
+      --dark:   #0A0A0F;
+      --card:   #12121A;
+      --text:   #F0F0F0;
+      --muted:  #888;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--dark);
+      color: var(--text);
+      font-family: 'Syne', sans-serif;
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 1.2rem 2.5rem;
+      background: rgba(10,10,15,0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255,255,255,0.06);
+    }
+    .nav-logo {
+      font-family: 'Space Mono', monospace;
+      font-weight: 700; font-size: 1.1rem;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .nav-links { display: flex; gap: 2rem; list-style: none; }
+    .nav-links a {
+      color: var(--muted); text-decoration: none; font-size: 0.9rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 1.5px;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--cyan); }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 100vh;
+      display: flex; align-items: center;
+      padding: 8rem 2.5rem 4rem;
+      position: relative; overflow: hidden;
+    }
+    .hero-blob {
+      position: absolute; border-radius: 50%; filter: blur(80px); opacity: 0.25;
+      animation: drift 8s ease-in-out infinite alternate;
+    }
+    .blob1 { width: 500px; height: 500px; background: var(--pink); top: -100px; right: -100px; }
+    .blob2 { width: 400px; height: 400px; background: var(--cyan); bottom: -80px; left: -80px; animation-delay: 2s; }
+    .blob3 { width: 300px; height: 300px; background: var(--yellow); top: 40%; left: 40%; animation-delay: 4s; }
+    @keyframes drift { from { transform: translate(0,0) scale(1); } to { transform: translate(30px,40px) scale(1.1); } }
+
+    .hero-content { position: relative; max-width: 800px; }
+    .hero-tag {
+      display: inline-block; margin-bottom: 1.5rem;
+      font-family: 'Space Mono', monospace; font-size: 0.8rem; font-weight: 700;
+      color: var(--yellow); letter-spacing: 3px; text-transform: uppercase;
+      border: 1px solid var(--yellow); padding: 0.4rem 1rem; border-radius: 50px;
+    }
+    .hero-name {
+      font-size: clamp(3rem, 9vw, 7rem);
+      font-weight: 800; line-height: 1;
+      margin-bottom: 0.5rem;
+    }
+    .hero-name span {
+      background: linear-gradient(135deg, var(--pink) 0%, var(--cyan) 50%, var(--yellow) 100%);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-role {
+      font-size: clamp(1.2rem, 3vw, 1.8rem);
+      color: var(--muted); margin-bottom: 1.5rem; font-weight: 400;
+    }
+    .hero-desc {
+      font-size: 1.05rem; color: #aaa; line-height: 1.7;
+      max-width: 500px; margin-bottom: 2.5rem;
+    }
+    .hero-btns { display: flex; gap: 1rem; flex-wrap: wrap; }
+    .btn {
+      padding: 0.85rem 2rem; font-family: 'Syne', sans-serif;
+      font-weight: 700; font-size: 0.95rem; border-radius: 50px;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--pink), var(--purple));
+      color: #fff;
+      box-shadow: 0 0 25px rgba(255,60,172,0.4);
+    }
+    .btn-primary:hover { box-shadow: 0 0 40px rgba(255,60,172,0.6); }
+    .btn-outline {
+      background: transparent;
+      border: 2px solid var(--cyan); color: var(--cyan);
+    }
+    .btn-outline:hover { background: rgba(0,245,255,0.1); }
+
+    /* ── SECTION BASE ── */
+    section { padding: 6rem 2.5rem; }
+    .section-title {
+      font-size: 0.75rem; font-family: 'Space Mono', monospace;
+      color: var(--pink); letter-spacing: 4px; text-transform: uppercase;
+      margin-bottom: 0.75rem;
+    }
+    .section-heading {
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 800; margin-bottom: 3rem;
+    }
+    .accent { color: var(--cyan); }
+    .max-w { max-width: 1100px; margin: 0 auto; }
+
+    /* ── ABOUT ── */
+    #about { background: var(--card); }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center;
+    }
+    .about-text p {
+      font-size: 1.05rem; color: #aaa; line-height: 1.8; margin-bottom: 1rem;
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem;
+    }
+    .stat-box {
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 16px; padding: 1.5rem; text-align: center;
+      transition: border-color 0.3s;
+    }
+    .stat-box:hover { border-color: var(--pink); }
+    .stat-num {
+      font-size: 2.5rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--pink), var(--cyan));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .stat-label { font-size: 0.85rem; color: var(--muted); margin-top: 0.3rem; }
+
+    /* ── SKILLS ── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: 1rem;
+    }
+    .skill-pill {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 12px; padding: 1.2rem 1rem;
+      text-align: center; font-size: 0.9rem; font-weight: 700;
+      transition: all 0.25s; cursor: default;
+    }
+    .skill-pill:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+      transform: translateY(-4px);
+      box-shadow: 0 8px 20px rgba(0,245,255,0.15);
+    }
+    .skill-pill .skill-icon { font-size: 1.8rem; margin-bottom: 0.5rem; display: block; }
+
+    /* ── PROJECTS ── */
+    #projects { background: var(--card); }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    .project-card {
+      background: var(--dark);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 20px; padding: 2rem;
+      transition: all 0.3s; position: relative; overflow: hidden;
+    }
+    .project-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--pink), var(--cyan));
+      transform: scaleX(0); transform-origin: left;
+      transition: transform 0.3s;
+    }
+    .project-card:hover::before { transform: scaleX(1); }
+    .project-card:hover {
+      transform: translateY(-6px);
+      border-color: rgba(255,60,172,0.3);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+    }
+    .project-number {
+      font-family: 'Space Mono', monospace; font-size: 0.75rem;
+      color: var(--pink); letter-spacing: 2px; margin-bottom: 1rem;
+    }
+    .project-title { font-size: 1.3rem; font-weight: 800; margin-bottom: 0.75rem; }
+    .project-desc { font-size: 0.9rem; color: #aaa; line-height: 1.7; margin-bottom: 1.5rem; }
+    .project-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+    .tag {
+      font-size: 0.75rem; font-weight: 700;
+      padding: 0.3rem 0.8rem; border-radius: 50px;
+      background: rgba(0,245,255,0.1);
+      color: var(--cyan); border: 1px solid rgba(0,245,255,0.2);
+    }
+
+    /* ── CONTACT ── */
+    .contact-wrapper {
+      background: var(--card);
+      border: 1px solid rgba(255,255,255,0.07);
+      border-radius: 24px; padding: 3rem; max-width: 700px; margin: 0 auto;
+      text-align: center;
+    }
+    .contact-wrapper h3 {
+      font-size: 1.5rem; font-weight: 800; margin-bottom: 0.75rem;
+    }
+    .contact-wrapper p { color: #aaa; margin-bottom: 2rem; line-height: 1.7; }
+    .contact-links { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .contact-link {
+      display: flex; align-items: center; gap: 0.6rem;
+      padding: 0.75rem 1.5rem; border-radius: 50px;
+      background: var(--dark); border: 1px solid rgba(255,255,255,0.1);
+      color: var(--text); text-decoration: none; font-weight: 700; font-size: 0.9rem;
+      transition: all 0.25s;
+    }
+    .contact-link:hover {
+      border-color: var(--pink); color: var(--pink);
+      box-shadow: 0 0 20px rgba(255,60,172,0.2);
+    }
+
+    /* ── FOOTER ── */
+    footer {
+      text-align: center; padding: 2rem;
+      color: var(--muted); font-size: 0.85rem;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+    footer span { color: var(--pink); }
+
+    /* ── ANIMATION ON SCROLL ── */
+    .fade-up {
+      opacity: 0; transform: translateY(30px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 768px) {
+      nav { padding: 1rem 1.5rem; }
+      .nav-links { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .about-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-btns { flex-direction: column; max-width: 260px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">&lt;NamaLo /&gt;</div>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hero-blob blob1"></div>
+    <div class="hero-blob blob2"></div>
+    <div class="hero-blob blob3"></div>
+    <div class="hero-content">
+      <span class="hero-tag">✦ Available for hire</span>
+      <h1 class="hero-name">Hi, I'm<br><span>Priska</span></h1>
+      <p class="hero-role">Frontend Developer &amp; UI Enthusiast</p>
+      <p class="hero-desc">
+        Gw seorang developer yang lagi belajar bikin hal-hal keren di web.
+        Masih pemula tapi semangat gila-gilaan. 🔥
+      </p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-primary">Lihat Projects</a>
+        <a href="#contact" class="btn btn-outline">Hubungi Gw</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="max-w">
+      <div class="about-grid fade-up">
+        <div class="about-text">
+          <p class="section-title">// About Me</p>
+          <h2 class="section-heading">Siapa <span class="accent">Gw?</span></h2>
+          <p>
+            Gw [Priska], siswa SMK jurusan [Jurusan Lo] yang lagi
+            ngebangun karir di dunia web development. Passion gw ada di
+            bikin tampilan website yang keren dan fungsional.
+          </p>
+          <p>
+            Setiap hari gw belajar hal baru — mulai dari HTML, CSS, sampe
+            nyoba-nyoba JavaScript. Masih banyak yang harus dipelajari, tapi
+            gw enjoy banget prosesnya!
+          </p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-box">
+            <div class="stat-num">10+</div>
+            <div class="stat-label">Projects Selesai</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">1+</div>
+            <div class="stat-label">Tahun Belajar</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">3</div>
+            <div class="stat-label">Tech Stack</div>
+          </div>
+          <div class="stat-box">
+            <div class="stat-num">∞</div>
+            <div class="stat-label">Semangat Belajar</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills">
+    <div class="max-w">
+      <p class="section-title">// Skills</p>
+      <h2 class="section-heading fade-up">Yang Gw <span class="accent">Bisa</span></h2>
+      <div class="skills-grid fade-up">
+        <div class="skill-pill"><span class="skill-icon">🌐</span>HTML5</div>
+        <div class="skill-pill"><span class="skill-icon">🎨</span>CSS3</div>
+        <div class="skill-pill"><span class="skill-icon">⚡</span>JavaScript</div>
+        <div class="skill-pill"><span class="skill-icon">📱</span>Responsive</div>
+        <div class="skill-pill"><span class="skill-icon">🖌️</span>Figma</div>
+        <div class="skill-pill"><span class="skill-icon">🐙</span>Git</div>
+        <div class="skill-pill"><span class="skill-icon">💻</span>VS Code</div>
+        <div class="skill-pill"><span class="skill-icon">🚀</span>Fast Learner</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects">
+    <div class="max-w">
+      <p class="section-title">// Projects</p>
+      <h2 class="section-heading fade-up">Karya <span class="accent">Gw</span></h2>
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <p class="project-number">01 —</p>
+          <h3 class="project-title">Website Profil</h3>
+          <p class="project-desc">Website profil pribadi pertama gw. Simple tapi bangga banget pas selesai ngodingnya.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+          </div>
+        </div>
+        <div class="project-card fade-up" style="transition-delay:0.1s">
+          <p class="project-number">02 —</p>
+          <h3 class="project-title">Landing Page Keren</h3>
+          <p class="project-desc">Landing page produk fiksi yang gw bikin buat latihan layouting dan animasi CSS.</p>
+          <div class="project-tags">
+            <span class="tag">HTML</span>
+            <span class="tag">CSS</span>
+            <span class="tag">JS</span>
+          </div>
+        </div>
+        <div class="project-card fade-up" style="transition-delay:0.2s">
+          <p class="project-number">03 —</p>
+          <h3 class="project-title">Kalkulator</h3>
+          <p class="project-desc">Kalkulator sederhana dengan tampilan yang gw desain sendiri. Project JS pertama gw!</p>
+          <div class="project-tags">
+            <span class="tag">JavaScript</span>
+            <span class="tag">DOM</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="max-w">
+      <p class="section-title">// Contact</p>
+      <h2 class="section-heading fade-up" style="text-align:center">Let's <span class="accent">Connect</span></h2>
+      <div class="contact-wrapper fade-up">
+        <h3>Gw open buat kolaborasi! 🤙</h3>
+        <p>Mau ngobrol, nanya-nanya, atau ajak kerja sama? Reach out aja, gw balas kok (insyaallah).</p>
+        <div class="contact-links">
+          <a href="mailto:email@kamu.com" class="contact-link">📧 Email</a>
+          <a href="https://github.com/username" target="_blank" class="contact-link">🐙 GitHub</a>
+          <a href="https://linkedin.com/in/username" target="_blank" class="contact-link">💼 LinkedIn</a>
+          <a href="https://instagram.com/username" target="_blank" class="contact-link">📸 Instagram</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>Dibuat dengan <span>♥</span> oleh <strong>Priska</strong> — 2025</p>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
